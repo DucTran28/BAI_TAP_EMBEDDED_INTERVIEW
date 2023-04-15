@@ -53,21 +53,20 @@ void SPI_Soft_Init()
 /*
  *Function: SPI_Soft_Init
  *Input: None
- *Output: result: biến có kiểu dữ liệu uint8_t
+ *Output: 
+    return: dataReceive: biến có kiểu dữ liệu uint8_t nhận về từ Master
  *Description: Hàm trả về 1 byte dữ liệu là data được truyền từ master.
 */
 uint8_t SPI_Receive()
 {
-  uint8_t x,result=0;
-
+  uint8_t dataReceive=0;
   while(digitalRead(SS_PIN) == HIGH);          //waiting until SS=0. Start condition
-
-  for(x=0;x<8;x++)
+  for(int i=0;i<8;i++)
   {
     while(digitalRead(SCK_PIN)==LOW);          // waiting until SCK == 1 --> receive data
-      result = result | digitalRead(MOSI);
-      result = result<<1;
+      dataReceive = dataReceive | digitalRead(MOSI);
+      dataReceive = dataReceive<<1;
     while(digitalRead(SCK_PIN)==HIGH);        //  waiting until SCK == 0 --> received 1 bit and prepare for process receive continue bit
-   -->  }
-  return result;
+  }
+  return dataReceive;
 }
