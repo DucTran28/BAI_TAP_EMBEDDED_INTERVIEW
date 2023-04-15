@@ -62,8 +62,8 @@ void SPI_Soft_Init()
 */
 void SPI_Soft_Transmit(uint8_t mData)
 {
-  uint8_t i=0,temp=0;
-  for(i=0;i<8;i++)
+  uint8_t temp=0;
+  for(int i=0;i<8;i++)
   {
      temp= mData & 0x80 ;
      if(temp)
