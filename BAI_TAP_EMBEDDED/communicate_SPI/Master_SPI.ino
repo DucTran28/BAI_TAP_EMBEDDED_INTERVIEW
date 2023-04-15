@@ -62,11 +62,11 @@ void SPI_Soft_Init()
 */
 void SPI_Soft_Transmit(uint8_t mData)
 {
-  uint8_t i=0,x=0;
+  uint8_t i=0,temp=0;
   for(i=0;i<8;i++)
   {
      x= mData & 0x80 ;
-     if(x)
+     if(temp)
      {
         digitalWrite(MOSI_PIN,HIGH);
      }
